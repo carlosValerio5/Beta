@@ -53,3 +53,22 @@ describe("poseAt", () => {
     expect(pose.head.y).toBeLessThan(shoulders);
   });
 });
+
+describe("joint direction", () => {
+  it("bends knees and elbows away from the body, whatever way the limb points", () => {
+    for (const k of spec.keyframes) {
+      const pose = poseAt(spec, k.start_frame + k.duration_frames - 1);
+      const mid = pose.hip.x;
+      for (const limb of ["lh", "lf"] as const) {
+        const p = pose.limbs[limb];
+        expect(p.joint.x).toBeLessThanOrEqual(Math.max(p.root.x, p.end.x) + 1e-6);
+        expect(p.joint.x).toBeLessThan(mid + 1e-6);
+      }
+      for (const limb of ["rh", "rf"] as const) {
+        const p = pose.limbs[limb];
+        expect(p.joint.x).toBeGreaterThanOrEqual(Math.min(p.root.x, p.end.x) - 1e-6);
+        expect(p.joint.x).toBeGreaterThan(mid - 1e-6);
+      }
+    }
+  });
+});

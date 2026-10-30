@@ -53,3 +53,27 @@ def test_choreography_director_spec_is_valid(motion_request: MotionRequest) -> N
     assert spec.keyframes[crux + 1].slow_motion
     assert spec.provenance.planner == ChoreographyDirector.name
     assert spec.keyframes[0].duration_frames > spec.keyframes[1].duration_frames
+
+
+def test_start_uses_the_lowest_reachable_feet() -> None:
+    from beta_core.domain.climber import BodyModel, ClimberProfile
+    from beta_core.testing import FAKE_IMAGE
+    from beta_vision.synthetic import SyntheticWallGenerator
+
+    wall = SyntheticWallGenerator(42).generate()
+    problem = wall.problem()
+    profile = ClimberProfile(height_cm=172)
+    request = BetaRequest(
+        plan_id="b",
+        analysis_id="a",
+        problem=problem,
+        image=FAKE_IMAGE,
+        profile=profile,
+        body=BodyModel.from_profile(profile),
+        px_per_cm=wall.px_per_cm,
+    )
+    plan = HeuristicBetaPlanner().plan(request)
+    feet = [problem.hold(h).center.y for h in (plan.start.lf, plan.start.rf) if h is not None]
+    lowest = max(h.center.y for h in problem.holds)
+    assert feet
+    assert max(feet) == lowest
