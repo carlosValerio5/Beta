@@ -1,0 +1,65 @@
+# XcodeGen spec (ADR-0012). `make ios-project` generates Beta.xcodeproj (gitignored).
+name: Beta
+options:
+  bundleIdPrefix: dev.beta
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+packages:
+  BetaKit:
+    path: Packages/BetaKit
+
+targets:
+  Beta:
+    type: application
+    platform: iOS
+    sources:
+      - BetaApp
+    dependencies:
+      - package: BetaKit
+    info:
+      path: BetaApp/Info.plist
+      properties:
+        CFBundleDisplayName: Beta
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIUserInterfaceStyle: Dark
+        NSCameraUsageDescription: Beta uses the camera to photograph the boulder problem you want to climb.
+        NSPhotoLibraryUsageDescription: Choose a photo of a boulder problem.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.beta.app
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+
+  BetaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - BetaUITests
+    dependencies:
+      - target: Beta
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.beta.app.uitests
+
+schemes:
+  Beta:
+    build:
+      targets:
+        Beta: all
+    test:
+      targets:
+        - BetaUITests
+        - package: BetaKit/BetaKitTests

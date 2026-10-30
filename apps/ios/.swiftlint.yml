@@ -1,0 +1,14 @@
+included:
+  - BetaApp
+  - BetaUITests
+  - Packages/BetaKit/Sources
+  - Packages/BetaKit/Tests
+excluded:
+  - Packages/BetaKit/.build
+line_length:
+  warning: 120
+  error: 160
+identifier_name:
+  excluded: [id, x, y, w, h, cx, cy, lh, rh, lf, rf, s]
+disabled_rules:
+  - trailing_comma
