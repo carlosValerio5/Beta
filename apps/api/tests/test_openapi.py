@@ -28,7 +28,12 @@ def test_openapi_lists_the_v1_surface() -> None:
 def test_export_writes_openapi_and_deterministic_examples(tmp_path: Path) -> None:
     export_contracts(tmp_path / "a")
     export_contracts(tmp_path / "b")
-    for name in ("openapi.json", "api/examples/analysis.json", "api/examples/beta.json", "api/examples/video.json"):
+    for name in (
+        "openapi.json",
+        "api/examples/analysis.json",
+        "api/examples/beta.json",
+        "api/examples/video.json",
+    ):
         a = (tmp_path / "a" / name).read_bytes()
         assert a == (tmp_path / "b" / name).read_bytes(), name
     beta = json.loads((tmp_path / "a" / "api/examples/beta.json").read_text())

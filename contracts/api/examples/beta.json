@@ -1,0 +1,88 @@
+{
+  "analysis_id": "ana_000001",
+  "attempts": 1,
+  "confidence": 0.35,
+  "created_at": "2026-10-30T12:00:00Z",
+  "error": null,
+  "grade": "V5",
+  "grade_font": "6C",
+  "id": "bet_000002",
+  "moves": [
+    {
+      "cue": "Right hand to hold 12",
+      "hold_id": 12,
+      "index": 0,
+      "is_crux": false,
+      "limb": "rh",
+      "technique": "reach"
+    },
+    {
+      "cue": "Cross left hand over to hold 15",
+      "hold_id": 15,
+      "index": 1,
+      "is_crux": false,
+      "limb": "lh",
+      "technique": "cross"
+    },
+    {
+      "cue": "High step left foot onto hold 16",
+      "hold_id": 16,
+      "index": 2,
+      "is_crux": false,
+      "limb": "lf",
+      "technique": "high_step"
+    },
+    {
+      "cue": "Lock off and reach right hand to hold 9",
+      "hold_id": 9,
+      "index": 3,
+      "is_crux": true,
+      "limb": "rh",
+      "technique": "lock_off"
+    },
+    {
+      "cue": "Lock off and reach left hand to hold 12",
+      "hold_id": 12,
+      "index": 4,
+      "is_crux": false,
+      "limb": "lh",
+      "technique": "lock_off"
+    },
+    {
+      "cue": "Right foot up to hold 15",
+      "hold_id": 15,
+      "index": 5,
+      "is_crux": false,
+      "limb": "rf",
+      "technique": "step"
+    },
+    {
+      "cue": "Left hand to hold 2",
+      "hold_id": 2,
+      "index": 6,
+      "is_crux": false,
+      "limb": "lh",
+      "technique": "reach"
+    },
+    {
+      "cue": "Match both hands on the top",
+      "hold_id": 2,
+      "index": 7,
+      "is_crux": false,
+      "limb": "rh",
+      "technique": "match"
+    }
+  ],
+  "planner": "heuristic-planner@1",
+  "start": {
+    "lf": 23,
+    "lh": 21,
+    "rf": 24,
+    "rh": 22
+  },
+  "status": "ready",
+  "style": "balanced",
+  "summary": "8 moves (6 hand, 2 foot). Keep your feet high so each reach stays short; the hardest move is #4.",
+  "updated_at": "2026-10-30T12:00:00Z",
+  "violations": []
+}

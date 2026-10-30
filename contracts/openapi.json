@@ -1,0 +1,1343 @@
+{
+  "components": {
+    "schemas": {
+      "AnalysisOut": {
+        "properties": {
+          "color_groups": {
+            "additionalProperties": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "title": "Color Groups",
+            "type": "object"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "holds": {
+            "items": {
+              "$ref": "#/components/schemas/HoldOut"
+            },
+            "title": "Holds",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "image_height": {
+            "title": "Image Height",
+            "type": "integer"
+          },
+          "image_url": {
+            "title": "Image Url",
+            "type": "string"
+          },
+          "image_width": {
+            "title": "Image Width",
+            "type": "integer"
+          },
+          "problem": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProblemOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "px_per_cm": {
+            "title": "Px Per Cm",
+            "type": "number"
+          },
+          "scale_method": {
+            "title": "Scale Method",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "image_url",
+          "image_width",
+          "image_height",
+          "holds",
+          "color_groups",
+          "px_per_cm",
+          "scale_method",
+          "problem"
+        ],
+        "title": "AnalysisOut",
+        "type": "object"
+      },
+      "BetaIn": {
+        "properties": {
+          "profile": {
+            "$ref": "#/components/schemas/ProfileIn"
+          }
+        },
+        "required": [
+          "profile"
+        ],
+        "title": "BetaIn",
+        "type": "object"
+      },
+      "BetaOut": {
+        "properties": {
+          "analysis_id": {
+            "title": "Analysis Id",
+            "type": "string"
+          },
+          "attempts": {
+            "title": "Attempts",
+            "type": "integer"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "grade": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grade"
+          },
+          "grade_font": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grade Font"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "moves": {
+            "items": {
+              "$ref": "#/components/schemas/MoveOut"
+            },
+            "title": "Moves",
+            "type": "array"
+          },
+          "planner": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planner"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ContactsOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "style": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Style"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          },
+          "violations": {
+            "items": {
+              "$ref": "#/components/schemas/ViolationOut"
+            },
+            "title": "Violations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "analysis_id",
+          "status",
+          "start",
+          "moves",
+          "summary",
+          "grade",
+          "grade_font",
+          "confidence",
+          "style",
+          "planner",
+          "attempts",
+          "violations",
+          "error",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "BetaOut",
+        "type": "object"
+      },
+      "Body_create_analysis_v1_analyses_post": {
+        "properties": {
+          "image": {
+            "contentMediaType": "application/octet-stream",
+            "description": "JPEG, PNG or WebP photo of the boulder",
+            "title": "Image",
+            "type": "string"
+          },
+          "wall_height_cm": {
+            "anyOf": [
+              {
+                "exclusiveMaximum": 2000.0,
+                "exclusiveMinimum": 50.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Wall Height Cm"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "title": "Body_create_analysis_v1_analyses_post",
+        "type": "object"
+      },
+      "ChapterOut": {
+        "properties": {
+          "move_index": {
+            "title": "Move Index",
+            "type": "integer"
+          },
+          "start_s": {
+            "title": "Start S",
+            "type": "number"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "move_index",
+          "title",
+          "start_s"
+        ],
+        "title": "ChapterOut",
+        "type": "object"
+      },
+      "ClimbingStyle": {
+        "enum": [
+          "static",
+          "dynamic",
+          "balanced"
+        ],
+        "title": "ClimbingStyle",
+        "type": "string"
+      },
+      "ContactsOut": {
+        "properties": {
+          "lf": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lf"
+          },
+          "lh": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lh"
+          },
+          "rf": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rf"
+          },
+          "rh": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rh"
+          }
+        },
+        "required": [
+          "lh",
+          "rh",
+          "lf",
+          "rf"
+        ],
+        "title": "ContactsOut",
+        "type": "object"
+      },
+      "FeedbackIn": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/FeedbackKind"
+          },
+          "move_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Move Index"
+          },
+          "note": {
+            "default": "",
+            "maxLength": 280,
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind"
+        ],
+        "title": "FeedbackIn",
+        "type": "object"
+      },
+      "FeedbackKind": {
+        "enum": [
+          "sent",
+          "useful",
+          "not_useful",
+          "move_looks_wrong",
+          "rewatch",
+          "watched_to_end"
+        ],
+        "title": "FeedbackKind",
+        "type": "string"
+      },
+      "FeedbackOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "move_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Move Index"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "move_index",
+          "created_at"
+        ],
+        "title": "FeedbackOut",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthOut": {
+        "properties": {
+          "director": {
+            "title": "Director",
+            "type": "string"
+          },
+          "planner": {
+            "title": "Planner",
+            "type": "string"
+          },
+          "renderer": {
+            "title": "Renderer",
+            "type": "boolean"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "version",
+          "planner",
+          "director",
+          "renderer"
+        ],
+        "title": "HealthOut",
+        "type": "object"
+      },
+      "HoldOut": {
+        "properties": {
+          "color": {
+            "title": "Color",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "cx": {
+            "title": "Cx",
+            "type": "number"
+          },
+          "cy": {
+            "title": "Cy",
+            "type": "number"
+          },
+          "h": {
+            "title": "H",
+            "type": "number"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "w": {
+            "title": "W",
+            "type": "number"
+          },
+          "x": {
+            "title": "X",
+            "type": "number"
+          },
+          "y": {
+            "title": "Y",
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "x",
+          "y",
+          "w",
+          "h",
+          "cx",
+          "cy",
+          "color",
+          "type",
+          "confidence"
+        ],
+        "title": "HoldOut",
+        "type": "object"
+      },
+      "MoveOut": {
+        "properties": {
+          "cue": {
+            "title": "Cue",
+            "type": "string"
+          },
+          "hold_id": {
+            "title": "Hold Id",
+            "type": "integer"
+          },
+          "index": {
+            "title": "Index",
+            "type": "integer"
+          },
+          "is_crux": {
+            "title": "Is Crux",
+            "type": "boolean"
+          },
+          "limb": {
+            "title": "Limb",
+            "type": "string"
+          },
+          "technique": {
+            "title": "Technique",
+            "type": "string"
+          }
+        },
+        "required": [
+          "index",
+          "limb",
+          "hold_id",
+          "technique",
+          "cue",
+          "is_crux"
+        ],
+        "title": "MoveOut",
+        "type": "object"
+      },
+      "ProblemIn": {
+        "properties": {
+          "color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color"
+          },
+          "hold_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hold Ids"
+          },
+          "start_hold_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Start Hold Ids",
+            "type": "array"
+          },
+          "top_hold_id": {
+            "title": "Top Hold Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "start_hold_ids",
+          "top_hold_id"
+        ],
+        "title": "ProblemIn",
+        "type": "object"
+      },
+      "ProblemOut": {
+        "properties": {
+          "color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color"
+          },
+          "hold_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Hold Ids",
+            "type": "array"
+          },
+          "start_hold_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Start Hold Ids",
+            "type": "array"
+          },
+          "top_hold_id": {
+            "title": "Top Hold Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "color",
+          "start_hold_ids",
+          "top_hold_id",
+          "hold_ids"
+        ],
+        "title": "ProblemOut",
+        "type": "object"
+      },
+      "ProfileIn": {
+        "properties": {
+          "ape_index_cm": {
+            "default": 0,
+            "maximum": 30.0,
+            "minimum": -20.0,
+            "title": "Ape Index Cm",
+            "type": "number"
+          },
+          "height_cm": {
+            "maximum": 230.0,
+            "minimum": 120.0,
+            "title": "Height Cm",
+            "type": "number"
+          },
+          "max_grade": {
+            "default": "V3",
+            "title": "Max Grade",
+            "type": "string"
+          },
+          "style": {
+            "$ref": "#/components/schemas/ClimbingStyle",
+            "default": "balanced"
+          }
+        },
+        "required": [
+          "height_cm"
+        ],
+        "title": "ProfileIn",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "VideoOut": {
+        "properties": {
+          "beta_id": {
+            "title": "Beta Id",
+            "type": "string"
+          },
+          "chapters": {
+            "items": {
+              "$ref": "#/components/schemas/ChapterOut"
+            },
+            "title": "Chapters",
+            "type": "array"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "duration_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration S"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "poster_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Poster Url"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          }
+        },
+        "required": [
+          "id",
+          "beta_id",
+          "status",
+          "video_url",
+          "poster_url",
+          "duration_s",
+          "chapters",
+          "error",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "VideoOut",
+        "type": "object"
+      },
+      "ViolationOut": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "move_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Move Index"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "move_index"
+        ],
+        "title": "ViolationOut",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "\nPhotograph a boulder, pick the problem, get a beta and a route video.\n\nFlow: `POST /v1/analyses` \u2192 `PUT /v1/analyses/{id}/problem` \u2192 `POST /v1/analyses/{id}/betas`\n(202, poll) \u2192 `POST /v1/betas/{id}/videos` (202, poll) \u2192 `POST /v1/betas/{id}/feedback`.\n",
+    "title": "Beta Climbing API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Liveness and active adapters",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/media/{key}": {
+      "get": {
+        "operationId": "media_media__key__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Images, posters and videos (supports HTTP Range)",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/v1/analyses": {
+      "post": {
+        "operationId": "create_analysis_v1_analyses_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Device-Id",
+            "required": false,
+            "schema": {
+              "default": "anonymous",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$",
+              "title": "X-Device-Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_analysis_v1_analyses_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Upload a wall photo",
+        "tags": [
+          "analyses"
+        ]
+      }
+    },
+    "/v1/analyses/{analysis_id}": {
+      "get": {
+        "operationId": "get_analysis_v1_analyses__analysis_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "analysis_id",
+            "required": true,
+            "schema": {
+              "title": "Analysis Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get an analysis",
+        "tags": [
+          "analyses"
+        ]
+      }
+    },
+    "/v1/analyses/{analysis_id}/betas": {
+      "post": {
+        "operationId": "request_beta_v1_analyses__analysis_id__betas_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "analysis_id",
+            "required": true,
+            "schema": {
+              "title": "Analysis Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetaIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Request a beta (generated in the background; poll GET /v1/betas/{id})",
+        "tags": [
+          "betas"
+        ]
+      }
+    },
+    "/v1/analyses/{analysis_id}/problem": {
+      "put": {
+        "operationId": "select_problem_v1_analyses__analysis_id__problem_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "analysis_id",
+            "required": true,
+            "schema": {
+              "title": "Analysis Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProblemIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Choose the problem's holds",
+        "tags": [
+          "analyses"
+        ]
+      }
+    },
+    "/v1/betas/{beta_id}": {
+      "get": {
+        "operationId": "get_beta_v1_betas__beta_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "beta_id",
+            "required": true,
+            "schema": {
+              "title": "Beta Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get a beta",
+        "tags": [
+          "betas"
+        ]
+      }
+    },
+    "/v1/betas/{beta_id}/feedback": {
+      "post": {
+        "operationId": "send_feedback_v1_betas__beta_id__feedback_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "beta_id",
+            "required": true,
+            "schema": {
+              "title": "Beta Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Send feedback",
+        "tags": [
+          "betas"
+        ]
+      }
+    },
+    "/v1/betas/{beta_id}/videos": {
+      "post": {
+        "operationId": "request_video_v1_betas__beta_id__videos_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "beta_id",
+            "required": true,
+            "schema": {
+              "title": "Beta Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Request a route video (directed + rendered in the background)",
+        "tags": [
+          "betas"
+        ]
+      }
+    },
+    "/v1/videos/{video_id}": {
+      "get": {
+        "operationId": "get_video_v1_videos__video_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "schema": {
+              "title": "Video Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get a route video",
+        "tags": [
+          "videos"
+        ]
+      }
+    },
+    "/v1/videos/{video_id}/spec": {
+      "get": {
+        "operationId": "get_video_spec_v1_videos__video_id__spec_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "schema": {
+              "title": "Video Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Video Spec V1 Videos  Video Id  Spec Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "The MotionSpec behind a video (debugging, Studio)",
+        "tags": [
+          "videos"
+        ]
+      }
+    }
+  }
+}

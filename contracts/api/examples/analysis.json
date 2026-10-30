@@ -1,0 +1,439 @@
+{
+  "color_groups": {
+    "blue": [
+      8
+    ],
+    "green": [
+      5,
+      13
+    ],
+    "orange": [
+      3,
+      7,
+      11,
+      17,
+      18,
+      19,
+      20,
+      29
+    ],
+    "pink": [
+      1,
+      14,
+      26
+    ],
+    "purple": [
+      0,
+      25
+    ],
+    "red": [
+      4,
+      10
+    ],
+    "yellow": [
+      2,
+      6,
+      9,
+      12,
+      15,
+      16,
+      21,
+      22,
+      23,
+      24,
+      27,
+      28
+    ]
+  },
+  "created_at": "2026-10-30T12:00:00Z",
+  "holds": [
+    {
+      "color": "purple",
+      "confidence": 0.977,
+      "cx": 791.0,
+      "cy": 300.5,
+      "h": 45.0,
+      "id": 0,
+      "type": "unknown",
+      "w": 46.0,
+      "x": 768.0,
+      "y": 278.0
+    },
+    {
+      "color": "pink",
+      "confidence": 0.968,
+      "cx": 900.0,
+      "cy": 289.5,
+      "h": 35.0,
+      "id": 1,
+      "type": "unknown",
+      "w": 34.0,
+      "x": 883.0,
+      "y": 272.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.971,
+      "cx": 516.5,
+      "cy": 423.5,
+      "h": 43.0,
+      "id": 2,
+      "type": "unknown",
+      "w": 41.0,
+      "x": 496.0,
+      "y": 402.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.965,
+      "cx": 884.0,
+      "cy": 413.5,
+      "h": 31.0,
+      "id": 3,
+      "type": "unknown",
+      "w": 32.0,
+      "x": 868.0,
+      "y": 398.0
+    },
+    {
+      "color": "red",
+      "confidence": 0.968,
+      "cx": 236.5,
+      "cy": 443.0,
+      "h": 44.0,
+      "id": 4,
+      "type": "unknown",
+      "w": 47.0,
+      "x": 213.0,
+      "y": 421.0
+    },
+    {
+      "color": "green",
+      "confidence": 0.975,
+      "cx": 172.5,
+      "cy": 559.0,
+      "h": 46.0,
+      "id": 5,
+      "type": "unknown",
+      "w": 45.0,
+      "x": 150.0,
+      "y": 536.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.965,
+      "cx": 448.5,
+      "cy": 542.5,
+      "h": 43.0,
+      "id": 6,
+      "type": "unknown",
+      "w": 43.0,
+      "x": 427.0,
+      "y": 521.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.967,
+      "cx": 598.5,
+      "cy": 536.0,
+      "h": 34.0,
+      "id": 7,
+      "type": "unknown",
+      "w": 39.0,
+      "x": 579.0,
+      "y": 519.0
+    },
+    {
+      "color": "blue",
+      "confidence": 0.969,
+      "cx": 222.0,
+      "cy": 650.5,
+      "h": 39.0,
+      "id": 8,
+      "type": "unknown",
+      "w": 38.0,
+      "x": 203.0,
+      "y": 631.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.965,
+      "cx": 579.0,
+      "cy": 649.5,
+      "h": 39.0,
+      "id": 9,
+      "type": "unknown",
+      "w": 42.0,
+      "x": 558.0,
+      "y": 630.0
+    },
+    {
+      "color": "red",
+      "confidence": 0.977,
+      "cx": 783.0,
+      "cy": 713.0,
+      "h": 38.0,
+      "id": 10,
+      "type": "unknown",
+      "w": 38.0,
+      "x": 764.0,
+      "y": 694.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.967,
+      "cx": 277.0,
+      "cy": 729.0,
+      "h": 34.0,
+      "id": 11,
+      "type": "unknown",
+      "w": 36.0,
+      "x": 259.0,
+      "y": 712.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.977,
+      "cx": 458.0,
+      "cy": 771.5,
+      "h": 45.0,
+      "id": 12,
+      "type": "unknown",
+      "w": 44.0,
+      "x": 436.0,
+      "y": 749.0
+    },
+    {
+      "color": "green",
+      "confidence": 0.968,
+      "cx": 381.5,
+      "cy": 816.0,
+      "h": 34.0,
+      "id": 13,
+      "type": "unknown",
+      "w": 41.0,
+      "x": 361.0,
+      "y": 799.0
+    },
+    {
+      "color": "pink",
+      "confidence": 0.971,
+      "cx": 291.0,
+      "cy": 858.0,
+      "h": 36.0,
+      "id": 14,
+      "type": "unknown",
+      "w": 36.0,
+      "x": 273.0,
+      "y": 840.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.972,
+      "cx": 581.0,
+      "cy": 882.0,
+      "h": 42.0,
+      "id": 15,
+      "type": "unknown",
+      "w": 46.0,
+      "x": 558.0,
+      "y": 861.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.969,
+      "cx": 461.0,
+      "cy": 993.0,
+      "h": 44.0,
+      "id": 16,
+      "type": "unknown",
+      "w": 44.0,
+      "x": 439.0,
+      "y": 971.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.968,
+      "cx": 554.0,
+      "cy": 982.0,
+      "h": 42.0,
+      "id": 17,
+      "type": "unknown",
+      "w": 38.0,
+      "x": 535.0,
+      "y": 961.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.974,
+      "cx": 708.0,
+      "cy": 1030.0,
+      "h": 32.0,
+      "id": 18,
+      "type": "unknown",
+      "w": 32.0,
+      "x": 692.0,
+      "y": 1014.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.964,
+      "cx": 126.5,
+      "cy": 1071.0,
+      "h": 44.0,
+      "id": 19,
+      "type": "unknown",
+      "w": 43.0,
+      "x": 105.0,
+      "y": 1049.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.961,
+      "cx": 208.5,
+      "cy": 1115.0,
+      "h": 42.0,
+      "id": 20,
+      "type": "unknown",
+      "w": 43.0,
+      "x": 187.0,
+      "y": 1094.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.979,
+      "cx": 456.5,
+      "cy": 1111.0,
+      "h": 48.0,
+      "id": 21,
+      "type": "unknown",
+      "w": 45.0,
+      "x": 434.0,
+      "y": 1087.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.968,
+      "cx": 572.5,
+      "cy": 1112.0,
+      "h": 40.0,
+      "id": 22,
+      "type": "unknown",
+      "w": 39.0,
+      "x": 553.0,
+      "y": 1092.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.967,
+      "cx": 460.5,
+      "cy": 1261.5,
+      "h": 25.0,
+      "id": 23,
+      "type": "foothold",
+      "w": 25.0,
+      "x": 448.0,
+      "y": 1249.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.958,
+      "cx": 569.5,
+      "cy": 1260.0,
+      "h": 18.0,
+      "id": 24,
+      "type": "foothold",
+      "w": 19.0,
+      "x": 560.0,
+      "y": 1251.0
+    },
+    {
+      "color": "purple",
+      "confidence": 0.97,
+      "cx": 54.5,
+      "cy": 1383.0,
+      "h": 32.0,
+      "id": 25,
+      "type": "unknown",
+      "w": 31.0,
+      "x": 39.0,
+      "y": 1367.0
+    },
+    {
+      "color": "pink",
+      "confidence": 0.969,
+      "cx": 252.5,
+      "cy": 1399.0,
+      "h": 26.0,
+      "id": 26,
+      "type": "unknown",
+      "w": 31.0,
+      "x": 237.0,
+      "y": 1386.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.969,
+      "cx": 448.5,
+      "cy": 1395.0,
+      "h": 24.0,
+      "id": 27,
+      "type": "foothold",
+      "w": 23.0,
+      "x": 437.0,
+      "y": 1383.0
+    },
+    {
+      "color": "yellow",
+      "confidence": 0.973,
+      "cx": 581.5,
+      "cy": 1395.0,
+      "h": 22.0,
+      "id": 28,
+      "type": "foothold",
+      "w": 23.0,
+      "x": 570.0,
+      "y": 1384.0
+    },
+    {
+      "color": "orange",
+      "confidence": 0.96,
+      "cx": 126.5,
+      "cy": 1423.5,
+      "h": 23.0,
+      "id": 29,
+      "type": "foothold",
+      "w": 27.0,
+      "x": 113.0,
+      "y": 1412.0
+    }
+  ],
+  "id": "ana_000001",
+  "image_height": 1500,
+  "image_url": "https://api.beta.example/media/images/18fcc4962d799eb0da1712a529546c5f8d5012f01ca82b5224fd47de75aeb152.jpg",
+  "image_width": 1000,
+  "problem": {
+    "color": "yellow",
+    "hold_ids": [
+      2,
+      6,
+      9,
+      12,
+      15,
+      16,
+      21,
+      22,
+      23,
+      24,
+      27,
+      28
+    ],
+    "start_hold_ids": [
+      21,
+      22
+    ],
+    "top_hold_id": 2
+  },
+  "px_per_cm": 3.0,
+  "scale_method": "wall_height"
+}

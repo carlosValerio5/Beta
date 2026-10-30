@@ -1,0 +1,53 @@
+{
+  "beta_id": "bet_000002",
+  "chapters": [
+    {
+      "move_index": 0,
+      "start_s": 2.0,
+      "title": "1. Right hand \u00b7 reach"
+    },
+    {
+      "move_index": 1,
+      "start_s": 3.2,
+      "title": "2. Left hand \u00b7 cross"
+    },
+    {
+      "move_index": 2,
+      "start_s": 4.4,
+      "title": "3. Left foot \u00b7 high step"
+    },
+    {
+      "move_index": 3,
+      "start_s": 5.2,
+      "title": "4. Right hand \u00b7 lock off"
+    },
+    {
+      "move_index": 4,
+      "start_s": 7.667,
+      "title": "5. Left hand \u00b7 lock off"
+    },
+    {
+      "move_index": 5,
+      "start_s": 8.867,
+      "title": "6. Right foot \u00b7 step"
+    },
+    {
+      "move_index": 6,
+      "start_s": 9.667,
+      "title": "7. Left hand \u00b7 reach"
+    },
+    {
+      "move_index": 7,
+      "start_s": 10.867,
+      "title": "8. Right hand \u00b7 match"
+    }
+  ],
+  "created_at": "2026-10-30T12:00:00Z",
+  "duration_s": 12.867,
+  "error": null,
+  "id": "vid_000003",
+  "poster_url": "https://api.beta.example/media/videos/vid_000003.jpg",
+  "status": "ready",
+  "updated_at": "2026-10-30T12:00:00Z",
+  "video_url": "https://api.beta.example/media/videos/vid_000003.mp4"
+}

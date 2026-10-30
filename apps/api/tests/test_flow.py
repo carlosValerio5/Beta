@@ -94,7 +94,9 @@ def test_select_problem_rejects_unknown_hold(client: TestClient, analysis: dict[
 
 
 def test_beta_requires_problem(client: TestClient, analysis: dict[str, Any]) -> None:
-    response = client.post(f"/v1/analyses/{analysis['id']}/betas", json={"profile": {"height_cm": 175}})
+    response = client.post(
+        f"/v1/analyses/{analysis['id']}/betas", json={"profile": {"height_cm": 175}}
+    )
     assert response.status_code == 409
     assert response.json()["error"]["code"] == "invalid_state"
 
@@ -111,12 +113,15 @@ def test_feedback(client: TestClient, ready_beta: dict[str, Any]) -> None:
     ok = client.post(f"/v1/betas/{ready_beta['id']}/feedback", json={"kind": "sent"})
     assert ok.status_code == 201
     bad = client.post(
-        f"/v1/betas/{ready_beta['id']}/feedback", json={"kind": "move_looks_wrong", "move_index": 999}
+        f"/v1/betas/{ready_beta['id']}/feedback",
+        json={"kind": "move_looks_wrong", "move_index": 999},
     )
     assert bad.status_code == 422
 
 
-def test_video_without_renderer_stops_at_directed(client: TestClient, ready_beta: dict[str, Any]) -> None:
+def test_video_without_renderer_stops_at_directed(
+    client: TestClient, ready_beta: dict[str, Any]
+) -> None:
     created = client.post(f"/v1/betas/{ready_beta['id']}/videos")
     assert created.status_code == 202
     video = client.get(f"/v1/videos/{created.json()['id']}").json()
@@ -134,7 +139,9 @@ def test_video_with_renderer(
     problem_selection: Callable[..., Any],
 ) -> None:
     analysis = upload_wall(rendering_client, wall)
-    rendering_client.put(f"/v1/analyses/{analysis['id']}/problem", json=problem_selection(wall, analysis))
+    rendering_client.put(
+        f"/v1/analyses/{analysis['id']}/problem", json=problem_selection(wall, analysis)
+    )
     beta = rendering_client.post(
         f"/v1/analyses/{analysis['id']}/betas", json={"profile": {"height_cm": 170}}
     ).json()

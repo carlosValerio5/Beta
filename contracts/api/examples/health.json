@@ -1,0 +1,7 @@
+{
+  "director": "choreography-director@1",
+  "planner": "heuristic-planner@1",
+  "renderer": true,
+  "status": "ok",
+  "version": "0.1.0"
+}

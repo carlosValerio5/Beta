@@ -85,7 +85,9 @@ def test_remotion_renderer_errors(tmp_path: Path, status: int) -> None:
     media = LocalMediaStore(tmp_path)
     spec = ladder_motion_spec()
     media.put(spec.image.uri, b"\xff\xd8", "image/jpeg")
-    client = httpx.Client(transport=httpx.MockTransport(lambda _: httpx.Response(status, json={"error": "x"})))
+    client = httpx.Client(
+        transport=httpx.MockTransport(lambda _: httpx.Response(status, json={"error": "x"}))
+    )
     with pytest.raises(AdapterError, match=str(status)):
         RemotionHttpRenderer("http://renderer", media, client=client).render(spec, "vid_1")
 

@@ -23,7 +23,9 @@ class StubRenderer:
         self.media = media
 
     def render(self, spec: MotionSpec, video_id: str) -> RenderResult:
-        self.media.put(f"videos/{video_id}.mp4", b"\x00\x00\x00\x18ftypmp42" + b"0" * 64, "video/mp4")
+        self.media.put(
+            f"videos/{video_id}.mp4", b"\x00\x00\x00\x18ftypmp42" + b"0" * 64, "video/mp4"
+        )
         self.media.put(f"videos/{video_id}.jpg", b"\xff\xd8poster", "image/jpeg")
         return RenderResult(
             video_key=f"videos/{video_id}.mp4",
@@ -100,10 +102,13 @@ def analysis(client: TestClient, wall: SyntheticWall) -> dict[str, Any]:
 
 @pytest.fixture
 def ready_beta(client: TestClient, wall: SyntheticWall, analysis: dict[str, Any]) -> dict[str, Any]:
-    put = client.put(f"/v1/analyses/{analysis['id']}/problem", json=problem_selection(wall, analysis))
+    put = client.put(
+        f"/v1/analyses/{analysis['id']}/problem", json=problem_selection(wall, analysis)
+    )
     assert put.status_code == 200, put.text
     created = client.post(
-        f"/v1/analyses/{analysis['id']}/betas", json={"profile": {"height_cm": 175, "style": "balanced"}}
+        f"/v1/analyses/{analysis['id']}/betas",
+        json={"profile": {"height_cm": 175, "style": "balanced"}},
     )
     assert created.status_code == 202, created.text
     beta: dict[str, Any] = client.get(f"/v1/betas/{created.json()['id']}").json()

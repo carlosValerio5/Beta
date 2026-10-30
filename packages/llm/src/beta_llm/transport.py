@@ -52,6 +52,10 @@ class AnthropicTransport:
     def __init__(self, client: Any | None = None) -> None:
         self._client = client if client is not None else anthropic.Anthropic()
 
+    @classmethod
+    def from_api_key(cls, api_key: str) -> AnthropicTransport:
+        return cls(anthropic.Anthropic(api_key=api_key))
+
     def send(self, params: dict[str, Any], *, fallbacks: bool) -> TransportResponse:
         try:
             if fallbacks:
