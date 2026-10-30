@@ -57,7 +57,11 @@ def case(**kw: object) -> CaseResult:
 
 def test_summarise_rates_and_means() -> None:
     summary = summarise(
-        [case(), case(beta_status="failed", beta_attempts=3, spec_valid=False, n_moves=0), case(beta_attempts=2)]
+        [
+            case(),
+            case(beta_status="failed", beta_attempts=3, spec_valid=False, n_moves=0),
+            case(beta_attempts=2),
+        ]
     )
     assert summary["n_cases"] == 3
     assert summary["beta_success_rate"] == pytest.approx(2 / 3)

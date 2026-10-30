@@ -63,7 +63,9 @@ def test_offline_pipeline_scores_well() -> None:
 
 
 def test_adapter_failures_are_recorded_not_raised() -> None:
-    broken = ClaudeBetaPlanner(ScriptedTransport("not json", "not json", "not json"), PromptRegistry(default_prompts_dir()))
+    broken = ClaudeBetaPlanner(
+        ScriptedTransport("not json", "not json", "not json"), PromptRegistry(default_prompts_dir())
+    )
     report = run_eval(synthetic_cases(1, start=100), broken, ChoreographyDirector())
     result = report.cases[0]
     assert result.beta_status == "failed"

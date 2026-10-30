@@ -13,7 +13,17 @@ runner = CliRunner()
 def test_offline_run_writes_reports(tmp_path: Path) -> None:
     out = tmp_path / "report"
     result = runner.invoke(
-        app, ["run", "--offline", "--cases", "2", "--out", str(out), "--data-root", str(tmp_path / "none")]
+        app,
+        [
+            "run",
+            "--offline",
+            "--cases",
+            "2",
+            "--out",
+            str(out),
+            "--data-root",
+            str(tmp_path / "none"),
+        ],
     )
     assert result.exit_code == 0, result.output
     report = json.loads((out.with_suffix(".json")).read_text())
