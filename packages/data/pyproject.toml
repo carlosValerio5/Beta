@@ -6,6 +6,7 @@ requires-python = ">=3.12"
 dependencies = [
   "beta-core",
   "beta-vision",
+  "beta-llm",
   "pyarrow>=17",
   "duckdb>=1.1",
   "typer>=0.12",
@@ -17,6 +18,7 @@ beta-data = "beta_data.cli:app"
 [tool.uv.sources]
 beta-core = { workspace = true }
 beta-vision = { workspace = true }
+beta-llm = { workspace = true }
 
 [build-system]
 requires = ["uv_build>=0.12,<0.13"]

@@ -94,7 +94,9 @@ def test_golden_set_lines_are_complete(seeded: Lakehouse) -> None:
     lines = (seeded.gold / "golden_set.jsonl").read_text().splitlines()
     assert lines
     case = json.loads(lines[0])
-    assert {"image_sha256", "image_path", "problem", "holds", "px_per_cm", "truth_holds"} <= set(case)
+    assert {"image_sha256", "image_path", "problem", "holds", "px_per_cm", "truth_holds"} <= set(
+        case
+    )
 
 
 def test_ingest_strips_gps(lake: Lakehouse) -> None:

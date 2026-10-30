@@ -59,6 +59,7 @@ coverage: ## Python coverage gate (80%)
 contracts: ## Regenerate JSON Schema / OpenAPI / fixtures in contracts/
 	$(UV) run python -m beta_core.contracts contracts
 	$(UV) run python -m beta_api.openapi contracts/openapi.json
+	$(UV) run beta-data contracts-doc
 
 contracts-check: contracts ## Fail if generated contracts drifted from source
 	git diff --exit-code -- contracts
@@ -77,7 +78,7 @@ silver-to-gold: ## Silver -> gold
 data: bronze-to-silver silver-to-gold ## Run the whole medallion pipeline
 
 dvc-init: ## Initialise DVC with a local remote (one-off)
-	$(DVC) init --subdir -q || true
+	$(DVC) init -q || true
 	$(DVC) remote add -d -f local ../.beta-dvc-remote
 
 dvc-repro: ## Reproduce the pipeline declared in dvc.yaml

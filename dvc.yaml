@@ -1,0 +1,19 @@
+# Medallion pipeline (ADR-0006). `make dvc-repro` re-runs stale stages; `dvc push` versions data.
+# Bronze is append-only and tracked with `dvc add data/bronze` after seeding/ingesting.
+stages:
+  bronze_to_silver:
+    cmd: uv run beta-data run bronze-to-silver --root data
+    deps:
+      - data/bronze
+      - packages/data/src/beta_data/jobs/bronze_to_silver.py
+      - packages/data/src/beta_data/contracts.py
+    outs:
+      - data/silver
+  silver_to_gold:
+    cmd: uv run beta-data run silver-to-gold --root data
+    deps:
+      - data/silver
+      - packages/data/src/beta_data/jobs/silver_to_gold.py
+      - packages/data/src/beta_data/contracts.py
+    outs:
+      - data/gold

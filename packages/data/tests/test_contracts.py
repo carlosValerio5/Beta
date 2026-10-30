@@ -14,7 +14,17 @@ from beta_data.tables import read_rows, write_table
 def test_registry_has_every_layer_table() -> None:
     silver = {c.name for c in CONTRACTS if c.layer == "silver"}
     gold = {c.name for c in CONTRACTS if c.layer == "gold"}
-    assert {"images", "holds", "problems", "betas", "moves", "motion_specs", "keyframes", "feedback", "renders"} <= silver
+    assert {
+        "images",
+        "holds",
+        "problems",
+        "betas",
+        "moves",
+        "motion_specs",
+        "keyframes",
+        "feedback",
+        "renders",
+    } <= silver
     assert {"beta_quality", "confusing_moves"} <= gold
     assert all(c.version >= 1 for c in CONTRACTS)
 

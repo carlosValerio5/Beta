@@ -200,6 +200,7 @@ version = "0.1.0"
 source = { editable = "packages/data" }
 dependencies = [
     { name = "beta-core" },
+    { name = "beta-llm" },
     { name = "beta-vision" },
     { name = "duckdb" },
     { name = "pyarrow" },
@@ -209,6 +210,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "beta-core", editable = "packages/core" },
+    { name = "beta-llm", editable = "packages/llm" },
     { name = "beta-vision", editable = "packages/vision" },
     { name = "duckdb", specifier = ">=1.1" },
     { name = "pyarrow", specifier = ">=17" },

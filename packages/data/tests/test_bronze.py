@@ -12,7 +12,10 @@ def upload(data: bytes = b"\xff\xd8jpeg-bytes") -> SanitizedUpload:
     import hashlib
 
     return SanitizedUpload(
-        data=data, sha256=hashlib.sha256(data).hexdigest(), content_type="image/jpeg", gps_stripped=False
+        data=data,
+        sha256=hashlib.sha256(data).hexdigest(),
+        content_type="image/jpeg",
+        gps_stripped=False,
     )
 
 
