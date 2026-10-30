@@ -54,6 +54,7 @@ extend-exclude = ["apps/renderer", "apps/ios", "data", "var"]
 select = ["E", "F", "W", "I", "N", "B", "UP", "SIM", "RUF", "PT", "C4", "PL", "TID"]
 ignore = [
   "E501",    # ruff format owns line length; long strings/URLs are fine
+  "PLR0917", # drawing helpers take positional geometry; keyword-only would add noise
   "PLR0913", # use cases take their ports explicitly; long ctor arg lists are intentional
   "PLR2004", # magic numbers are fine in tests and anthropometric tables
 ]

@@ -26,3 +26,7 @@ class InvalidStateError(BetaError):
 
 class AdapterError(BetaError):
     """A port implementation failed (network, subprocess, third-party SDK)."""
+
+
+class InvalidInputError(BetaError):
+    """Client input is unusable (not an image, unsupported format, too large)."""

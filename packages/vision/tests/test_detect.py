@@ -13,7 +13,9 @@ from beta_vision.synthetic import SyntheticWall
 MATCH_PX = 15.0
 
 
-def test_recall_and_precision_on_synthetic_wall(wall: SyntheticWall, wall_image: NormalizedImage) -> None:
+def test_recall_and_precision_on_synthetic_wall(
+    wall: SyntheticWall, wall_image: NormalizedImage
+) -> None:
     detected = ColorHoldDetector().detect(wall_image)
     matches = match_holds(wall.holds, detected, max_distance=MATCH_PX)
     recall = len(matches) / len(wall.holds)
@@ -38,8 +40,10 @@ def test_ids_unique_and_read_top_to_bottom(wall_image: NormalizedImage) -> None:
 
 def test_holds_are_inside_the_image(wall_image: NormalizedImage) -> None:
     for h in ColorHoldDetector().detect(wall_image):
-        assert 0 <= h.bbox.x and h.bbox.x + h.bbox.w <= wall_image.width
-        assert 0 <= h.bbox.y and h.bbox.y + h.bbox.h <= wall_image.height
+        assert h.bbox.x >= 0
+        assert h.bbox.x + h.bbox.w <= wall_image.width
+        assert h.bbox.y >= 0
+        assert h.bbox.y + h.bbox.h <= wall_image.height
         assert 0 <= h.confidence <= 1
 
 

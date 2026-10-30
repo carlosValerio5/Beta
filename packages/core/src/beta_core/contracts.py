@@ -15,6 +15,7 @@ from beta_core.domain.beta import BetaPlan, Provenance
 from beta_core.domain.climber import BodyModel
 from beta_core.domain.motion import MotionDraft, MotionSpec, MoveDirection
 from beta_core.kinematics import kinematics_fixtures
+from beta_core.palette import palette_contract
 from beta_core.testing import (
     LADDER_IMAGE,
     LADDER_PX_PER_CM,
@@ -71,6 +72,7 @@ def export_contracts(root: Path) -> list[Path]:
         "beta-plan/v1.schema.json": _dump(BetaPlan.model_json_schema()),
         "beta-plan/examples/ladder.json": _dump(ladder_plan().model_dump(mode="json")),
         "kinematics/fixtures.json": _dump(kinematics_fixtures()),
+        "palette.json": _dump(palette_contract()),
     }
     written: list[Path] = []
     for rel, content in files.items():

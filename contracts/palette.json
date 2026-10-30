@@ -1,0 +1,20 @@
+{
+  "accent": "#FF6B35",
+  "chalk": "#F5F3EE",
+  "holds": {
+    "blue": "#285AD2",
+    "green": "#28AA46",
+    "orange": "#F0781E",
+    "pink": "#E65AA0",
+    "purple": "#823CB4",
+    "red": "#D22828",
+    "yellow": "#F0C81E"
+  },
+  "ink": "#0F1115",
+  "limbs": {
+    "lf": "#14B8A6",
+    "lh": "#3B82F6",
+    "rf": "#F97316",
+    "rh": "#EF4444"
+  }
+}

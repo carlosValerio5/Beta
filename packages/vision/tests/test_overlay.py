@@ -15,7 +15,9 @@ def pixels(data: bytes) -> np.ndarray:  # type: ignore[type-arg]
     return np.asarray(Image.open(io.BytesIO(data)).convert("RGB"), dtype=np.int16)
 
 
-def test_marks_keep_size_and_change_pixels(wall: SyntheticWall, wall_image: NormalizedImage) -> None:
+def test_marks_keep_size_and_change_pixels(
+    wall: SyntheticWall, wall_image: NormalizedImage
+) -> None:
     problem = wall.problem()
     marked = PillowMarkRenderer().render_marks(wall_image, problem.holds)
     assert (marked.width, marked.height) == (wall_image.width, wall_image.height)
