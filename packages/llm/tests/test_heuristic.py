@@ -38,7 +38,9 @@ def test_short_climber_still_gets_a_plan(beta_request: BetaRequest) -> None:
     from beta_core.domain.climber import BodyModel, ClimberProfile
 
     short = ClimberProfile(height_cm=155, ape_index_cm=-2)
-    request = beta_request.model_copy(update={"profile": short, "body": BodyModel.from_profile(short)})
+    request = beta_request.model_copy(
+        update={"profile": short, "body": BodyModel.from_profile(short)}
+    )
     plan = HeuristicBetaPlanner().plan(request)
     assert plan.moves
     assert {m.limb for m in plan.moves} >= {Limb.LH, Limb.RH}

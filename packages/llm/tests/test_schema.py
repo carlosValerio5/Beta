@@ -30,7 +30,15 @@ def test_objects_are_closed_and_fully_required() -> None:
 
 def test_unsupported_keywords_are_stripped() -> None:
     schema = strict_schema(MotionDraft)
-    banned = {"default", "minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum", "minLength", "maxLength"}
+    banned = {
+        "default",
+        "minimum",
+        "maximum",
+        "exclusiveMinimum",
+        "exclusiveMaximum",
+        "minLength",
+        "maxLength",
+    }
     for node in walk(schema):
         assert not banned & set(node), node
 

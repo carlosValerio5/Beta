@@ -299,3 +299,13 @@ class FakeRenderer:
             poster_key=f"videos/{video_id}.jpg",
             duration_s=spec.meta.duration_frames / spec.meta.fps,
         )
+
+
+#: A tiny stand-in for a marked JPEG, sized like the ladder image (adapters never decode it).
+FAKE_IMAGE = NormalizedImage(
+    data=b"\xff\xd8fake-jpeg",
+    width=LADDER_IMAGE.width,
+    height=LADDER_IMAGE.height,
+    sha256="a" * 64,
+    dhash="0" * 16,
+)

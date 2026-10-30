@@ -7,11 +7,10 @@ import pytest
 from pydantic import BaseModel
 
 from beta_core.errors import AdapterError
+from beta_core.testing import FAKE_IMAGE as IMAGE
 from beta_llm.claude import StructuredCaller, image_block
 from beta_llm.prompts import Prompt
 from beta_llm.transport import ScriptedTransport, TransportResponse
-
-from beta_core.testing import FAKE_IMAGE as IMAGE
 
 
 class Answer(BaseModel):
@@ -32,13 +31,17 @@ PROMPT = Prompt(
 
 def test_builds_cached_structured_request() -> None:
     transport = ScriptedTransport(json.dumps({"move": 3, "why": "closest"}))
-    result = StructuredCaller(transport).call(PROMPT, user_text="hello", images=[IMAGE], output=Answer)
+    result = StructuredCaller(transport).call(
+        PROMPT, user_text="hello", images=[IMAGE], output=Answer
+    )
 
     params, fallbacks = transport.calls[0]
     assert fallbacks is True
     assert params["model"] == "claude-opus-5-5"
     assert params["max_tokens"] == 2000
-    assert params["system"] == [{"type": "text", "text": "SYSTEM", "cache_control": {"type": "ephemeral"}}]
+    assert params["system"] == [
+        {"type": "text", "text": "SYSTEM", "cache_control": {"type": "ephemeral"}}
+    ]
     assert params["output_config"]["effort"] == "high"
     assert params["output_config"]["format"]["type"] == "json_schema"
     content = params["messages"][0]["content"]
@@ -51,7 +54,9 @@ def test_builds_cached_structured_request() -> None:
 
 def test_model_override_disables_fallback_for_haiku() -> None:
     transport = ScriptedTransport('{"move": 1, "why": "x"}')
-    StructuredCaller(transport, model_override="claude-haiku-5-5").call(PROMPT, user_text="u", output=Answer)
+    StructuredCaller(transport, model_override="claude-haiku-5-5").call(
+        PROMPT, user_text="u", output=Answer
+    )
     params, fallbacks = transport.calls[0]
     assert params["model"] == "claude-haiku-5-5"
     assert fallbacks is False

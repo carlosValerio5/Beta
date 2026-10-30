@@ -60,7 +60,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"**/tests/**" = ["PLR2004", "S101", "PLR0915", "N802"]
+"**/tests/**" = ["PLR2004", "S101", "PLR0915", "N802", "PLC0415"]
 "packages/vision/**" = ["TID251"] # the one package allowed to import OpenCV
 "packages/llm/**" = ["TID251"]    # the one package allowed to import the Anthropic SDK
 
