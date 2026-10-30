@@ -1,0 +1,16 @@
+{
+  "name": "beta-workspace",
+  "private": true,
+  "description": "Beta Climbing JS workspace root (npm workspaces; see ADR-0013).",
+  "workspaces": [
+    "apps/renderer"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "npm test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  }
+}

@@ -1,0 +1,7 @@
+# Default owner
+*                     @carlosValerio5
+
+# Contracts and released prompts change product behaviour: always review.
+/contracts/           @carlosValerio5
+/prompts/             @carlosValerio5
+/data/contracts/      @carlosValerio5

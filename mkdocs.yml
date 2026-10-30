@@ -1,0 +1,54 @@
+site_name: Beta Climbing
+site_description: Photograph a boulder, get the beta — and a video of it.
+repo_url: https://github.com/carlosValerio5/beta
+docs_dir: docs
+strict: true
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep orange
+      accent: amber
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Product:
+      - Vision: product/vision.md
+      - PRD (v0): product/prd.md
+      - Personas: product/personas.md
+      - Roadmap: product/roadmap.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - Hexagonal core: architecture/hexagonal.md
+      - Generation pipeline: architecture/pipeline.md
+      - MotionSpec DSL: architecture/motion-spec.md
+      - Kinematics: architecture/kinematics.md
+  - Data:
+      - Medallion architecture: data/medallion.md
+      - Contracts & lineage: data/contracts.md
+      - Privacy: data/privacy.md
+  - AI agents:
+      - Overview: agents/README.md
+      - Beta planner: agents/beta-planner.md
+      - Motion director: agents/motion-director.md
+      - Hold classifier: agents/hold-classifier.md
+  - ADRs: adr/README.md
+  - Guides:
+      - Dev setup: guides/dev-setup.md
+      - Runbook: guides/runbook.md

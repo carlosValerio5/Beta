@@ -1,0 +1,18 @@
+[project]
+name = "beta-vision"
+version = "0.1.0"
+description = "Beta Climbing vision adapters: preprocessing, hold detection, overlays, synthetic walls."
+requires-python = ">=3.12"
+dependencies = [
+  "beta-core",
+  "numpy>=2.0",
+  "pillow>=11.0",
+  "opencv-python-headless>=4.10",
+]
+
+[tool.uv.sources]
+beta-core = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"
