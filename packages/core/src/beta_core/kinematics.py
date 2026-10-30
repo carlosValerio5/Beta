@@ -125,6 +125,68 @@ def best_hip(points: Mapping[Limb, Point | None], body: BodyModel) -> tuple[Poin
     return best, max_reach_ratio(best, points, body)
 
 
+#: How extended limbs look in a relaxed climbing position (fraction of full reach).
+PREFERRED_HAND_RATIO = 0.85
+PREFERRED_FOOT_RATIO = 0.75
+#: Legs fold (frog/squat) more freely than arms in a wall-plane projection.
+FOOT_WEIGHT = 0.3
+HIP_CENTERING = 10.0
+GRAVITY = 2.0
+#: Limbs folded tighter than this look broken in 2D.
+MIN_COMFORT_RATIO = 0.4
+FOLD_PENALTY = 5.0
+
+
+def natural_hip(points: Mapping[Limb, Point | None], body: BodyModel) -> Point:
+    """Hip for *showing* a pose: straight-ish arms, bent legs, never beyond full reach.
+
+    :func:`best_hip` answers "is this reachable at all?" (minimax), which crumples the body; route
+    videos want the pose a climber would actually hold. Falls back to ``best_hip`` when no
+    position reaches every hold.
+    """
+    compact, worst = best_hip(points, body)
+    if worst > 1.0:
+        return compact
+    span = body.leg_length + body.torso
+    in_contact = [(limb, p) for limb, p in points.items() if p is not None]
+    mid_x = sum(p.x for _, p in in_contact) / len(in_contact)
+
+    def cost(hip: Point) -> float:
+        hands = [p for limb, p in in_contact if limb.is_hand]
+        roots = limb_roots(hip, body, hands)
+        # Hips stay roughly centred over the holds (no leaning off to one side).
+        total = HIP_CENTERING * ((hip.x - mid_x) / span) ** 2
+        for limb, p in in_contact:
+            ratio = roots[limb].distance_to(p) / limb_length(body, limb)
+            if ratio > 1.0:
+                return float("inf")
+            preferred = PREFERRED_HAND_RATIO if limb.is_hand else PREFERRED_FOOT_RATIO
+            total += (1.0 if limb.is_hand else FOOT_WEIGHT) * (ratio - preferred) ** 2
+            if ratio < MIN_COMFORT_RATIO:
+                total += FOLD_PENALTY * (MIN_COMFORT_RATIO - ratio) ** 2
+            # Climbers hang below their hands and stand above their feet.
+            below = (p.y - roots[limb].y) if limb.is_hand else (hip.y - p.y)
+            if below > 0:
+                total += GRAVITY * (below / limb_length(body, limb)) ** 2
+        return total
+
+    best, best_cost = compact, cost(compact)
+    half = span / 2
+    for steps in (15, 7, 7, 7, 7):
+        center = best
+        for i in range(steps):
+            for j in range(steps):
+                candidate = Point(
+                    x=center.x - half + 2 * half * i / (steps - 1),
+                    y=center.y - half + 2 * half * j / (steps - 1),
+                )
+                c = cost(candidate)
+                if c < best_cost - _EPS:
+                    best, best_cost = candidate, c
+        half /= 3
+    return best
+
+
 def solve_two_bone(root: Point, target: Point, l1: float, l2: float, bend: int) -> IKSolution:
     """Analytic two-bone IK. Unreachable targets stretch the limb straight toward the target."""
     dx, dy = target.x - root.x, target.y - root.y

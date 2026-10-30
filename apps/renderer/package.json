@@ -19,7 +19,7 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "remotion": "4.0.535",
-    "zod": "4.6.7"
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",

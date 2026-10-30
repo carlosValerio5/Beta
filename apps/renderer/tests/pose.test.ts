@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { poseAt } from "../src/pose";
-import { type Limb, parseMotionSpec, type Point } from "../src/spec";
+import { type Limb, type Point, parseMotionSpec } from "../src/spec";
 import { readContract } from "./fixtures";
 
 const spec = parseMotionSpec(readContract("motion-spec/examples/ladder-directed.json"));

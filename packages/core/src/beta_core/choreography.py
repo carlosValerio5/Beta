@@ -32,7 +32,7 @@ from beta_core.domain.motion import (
     SpecHold,
     Trail,
 )
-from beta_core.kinematics import best_hip, contact_points
+from beta_core.kinematics import contact_points, natural_hip
 
 START_S = 1.6
 MOVE_S = 1.2
@@ -73,7 +73,7 @@ def assemble_motion_spec(
         duration = max(1, round(seconds * fps * (SLOW_FACTOR if slow else 1.0)))
 
         points = contact_points(problem, contacts)
-        hip = direction.hip if direction and direction.hip else best_hip(points, body)[0]
+        hip = direction.hip if direction and direction.hip else natural_hip(points, body)
         camera = (
             direction.camera if direction and direction.camera else _auto_camera(points, hip, image)
         )
