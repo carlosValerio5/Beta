@@ -70,7 +70,11 @@ class HeuristicBetaPlanner:
         ratios: list[float] = []
         top = problem.top_hold_id
         while len(moves) < MAX_MOVES and not (contacts.lh == contacts.rh == top):
-            step = self._hand_move(climb, contacts) or self._foot_move(climb, contacts)
+            step = (
+                self._hand_move(climb, contacts)
+                or self._foot_move(climb, contacts)
+                or self._foot_move(climb, contacts, allow_cross=True)  # last resort: a foot swap
+            )
             if step is None:
                 break
             limb, hold = step
@@ -167,7 +171,9 @@ class HeuristicBetaPlanner:
                     return hand, hold
         return None
 
-    def _foot_move(self, climb: _Climb, contacts: Contacts) -> tuple[Limb, int] | None:
+    def _foot_move(
+        self, climb: _Climb, contacts: Contacts, allow_cross: bool = False
+    ) -> tuple[Limb, int] | None:
         highest_hand = min(climb.y(contacts.lh), climb.y(contacts.rh))
         floor = highest_hand + climb.body.torso * 0.5
         order = sorted(Limb.feet(), key=lambda f: (-climb.y(contacts.get(f)), f.value))
@@ -181,7 +187,7 @@ class HeuristicBetaPlanner:
                     if climb.y(h) < climb.y(current) - MIN_PROGRESS_PX
                     and climb.y(h) > floor
                     and h not in (contacts.lh, contacts.rh, other_foot)
-                    and not self._crosses(climb, foot, h, other_foot)
+                    and (allow_cross or not self._crosses(climb, foot, h, other_foot))
                 ]
             )
             for hold in candidates:
