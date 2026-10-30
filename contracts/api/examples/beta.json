@@ -4,85 +4,101 @@
   "confidence": 0.35,
   "created_at": "2026-10-30T12:00:00Z",
   "error": null,
-  "grade": "V5",
-  "grade_font": "6C",
+  "grade": "V4",
+  "grade_font": "6B",
   "id": "bet_000002",
   "moves": [
     {
-      "cue": "Right hand to hold 12",
-      "hold_id": 12,
+      "cue": "Right hand to hold 15",
+      "hold_id": 15,
       "index": 0,
       "is_crux": false,
       "limb": "rh",
       "technique": "reach"
     },
     {
-      "cue": "Cross left hand over to hold 15",
-      "hold_id": 15,
+      "cue": "Left hand to hold 16",
+      "hold_id": 16,
       "index": 1,
       "is_crux": false,
       "limb": "lh",
-      "technique": "cross"
+      "technique": "reach"
     },
     {
-      "cue": "High step left foot onto hold 16",
-      "hold_id": 16,
+      "cue": "High step left foot onto hold 21",
+      "hold_id": 21,
       "index": 2,
       "is_crux": false,
       "limb": "lf",
       "technique": "high_step"
     },
     {
-      "cue": "Lock off and reach right hand to hold 9",
-      "hold_id": 9,
+      "cue": "Right foot up to hold 22",
+      "hold_id": 22,
       "index": 3,
-      "is_crux": true,
-      "limb": "rh",
-      "technique": "lock_off"
-    },
-    {
-      "cue": "Lock off and reach left hand to hold 12",
-      "hold_id": 12,
-      "index": 4,
-      "is_crux": false,
-      "limb": "lh",
-      "technique": "lock_off"
-    },
-    {
-      "cue": "Right foot up to hold 15",
-      "hold_id": 15,
-      "index": 5,
       "is_crux": false,
       "limb": "rf",
       "technique": "step"
     },
     {
-      "cue": "Left hand to hold 2",
-      "hold_id": 2,
-      "index": 6,
+      "cue": "Left hand to hold 6",
+      "hold_id": 6,
+      "index": 4,
       "is_crux": false,
       "limb": "lh",
       "technique": "reach"
     },
     {
-      "cue": "Match both hands on the top",
-      "hold_id": 2,
-      "index": 7,
+      "cue": "Right hand to hold 9",
+      "hold_id": 9,
+      "index": 5,
       "is_crux": false,
       "limb": "rh",
+      "technique": "reach"
+    },
+    {
+      "cue": "High step right foot onto hold 12",
+      "hold_id": 12,
+      "index": 6,
+      "is_crux": false,
+      "limb": "rf",
+      "technique": "high_step"
+    },
+    {
+      "cue": "Left foot up to hold 16",
+      "hold_id": 16,
+      "index": 7,
+      "is_crux": false,
+      "limb": "lf",
+      "technique": "step"
+    },
+    {
+      "cue": "Right hand to hold 2",
+      "hold_id": 2,
+      "index": 8,
+      "is_crux": false,
+      "limb": "rh",
+      "technique": "reach"
+    },
+    {
+      "cue": "Match both hands on the top",
+      "hold_id": 2,
+      "index": 9,
+      "is_crux": true,
+      "limb": "lh",
       "technique": "match"
     }
   ],
   "planner": "heuristic-planner@1",
   "start": {
-    "lf": 23,
+    "lf": 27,
     "lh": 21,
-    "rf": 24,
+    "rf": 28,
     "rh": 22
   },
   "status": "ready",
   "style": "balanced",
-  "summary": "8 moves (6 hand, 2 foot). Keep your feet high so each reach stays short; the hardest move is #4.",
+  "summary": "10 moves (6 hand, 4 foot). Keep your feet high so each reach stays short; the hardest move is #10.",
   "updated_at": "2026-10-30T12:00:00Z",
   "violations": []
 }

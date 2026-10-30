@@ -62,7 +62,9 @@ def main() -> None:
         files={"image": ("wall.jpg", wall.image, "image/jpeg")},
         data={"wall_height_cm": str(wall.height / wall.px_per_cm)},
     ).json()
-    print(f"analysis {analysis['id']}: {len(analysis['holds'])} holds, colours {list(analysis['color_groups'])}")
+    print(
+        f"analysis {analysis['id']}: {len(analysis['holds'])} holds, colours {list(analysis['color_groups'])}"
+    )
 
     detected = [
         Hold(id=h["id"], bbox=BBox(x=h["x"], y=h["y"], w=h["w"], h=h["h"]), color=h["color"])
@@ -80,11 +82,15 @@ def main() -> None:
 
     beta_id = client.post(
         f"/v1/analyses/{analysis['id']}/betas",
-        json={"profile": {"height_cm": 172, "ape_index_cm": 2, "max_grade": "V4", "style": "balanced"}},
+        json={
+            "profile": {"height_cm": 172, "ape_index_cm": 2, "max_grade": "V4", "style": "balanced"}
+        },
     ).json()["id"]
     beta = poll(client, f"/v1/betas/{beta_id}", {"ready", "failed"}, timeout_s=180)
     beta_s = time.monotonic() - started
-    print(f"beta {beta['status']} in {beta_s:.1f}s: {len(beta['moves'])} moves, {beta['grade']} via {beta['planner']}")
+    print(
+        f"beta {beta['status']} in {beta_s:.1f}s: {len(beta['moves'])} moves, {beta['grade']} via {beta['planner']}"
+    )
     if beta["status"] != "ready":
         raise SystemExit(f"beta failed: {beta['error']} {beta['violations']}")
 

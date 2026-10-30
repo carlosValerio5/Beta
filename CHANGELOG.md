@@ -17,4 +17,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - `beta_api`: FastAPI v1 (analyses, problems, betas, videos, feedback, media) with background jobs.
 - `@beta/renderer`: Remotion route-video composition with 2D IK climber, render service.
 - iOS: SwiftUI app and `BetaKit` package.
-- `beta_evals`: offline/live eval harness over the golden set.
+- `beta_evals`: offline/cassette/live eval harness over the golden set with a threshold gate.
+- `scripts/e2e_smoke.py` / `make smoke`: live HTTP run from photo to rendered MP4.
+- DVC: `data/bronze` tracked, `dvc.yaml` stages reproduced (`dvc.lock`).
+- Docs: architecture (overview, hexagonal, pipeline, MotionSpec, kinematics), AI agent docs,
+  runbook, generated table contracts, TDD evidence report.

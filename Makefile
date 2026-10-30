@@ -93,7 +93,7 @@ eval-live: ## Live eval against Claude (needs ANTHROPIC_API_KEY)
 	BETA_LIVE=1 $(UV) run beta-eval run
 
 # ---------------------------------------------------------------- run
-.PHONY: api renderer studio render-fixture dev
+.PHONY: api renderer studio render-fixture dev smoke
 api: ## Run the API on :8000
 	$(UV) run beta-api
 
@@ -105,6 +105,9 @@ studio: ## Open Remotion Studio with fixture specs
 
 render-fixture: ## Render the golden MotionSpec fixture to var/renders/
 	$(NPM) run render:fixture -w @beta/renderer
+
+smoke: ## End-to-end HTTP smoke test against a running `make dev`
+	$(UV) run python scripts/e2e_smoke.py
 
 dev: ## API + renderer together
 	$(MAKE) -j2 api renderer

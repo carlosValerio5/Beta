@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  bronze_to_silver:
+    cmd: uv run beta-data run bronze-to-silver --root data
+    deps:
+    - path: data/bronze
+      hash: md5
+      md5: 275d08bdbc6038c60ed46819bc185c05.dir
+      size: 6748009
+      nfiles: 27
+    - path: packages/data/src/beta_data/contracts.py
+      hash: md5
+      md5: 1d19a4b3b4025c780d81529f69eaabb5
+      size: 6401
+    - path: packages/data/src/beta_data/jobs/bronze_to_silver.py
+      hash: md5
+      md5: d1b6fc96149f471aa97076dba8f41c61
+      size: 9943
+    outs:
+    - path: data/silver
+      hash: md5
+      md5: 34d1532111b23bfef3923d3110fbed1f.dir
+      size: 6000269
+      nfiles: 22
+  silver_to_gold:
+    cmd: uv run beta-data run silver-to-gold --root data
+    deps:
+    - path: data/silver
+      hash: md5
+      md5: 34d1532111b23bfef3923d3110fbed1f.dir
+      size: 6000269
+      nfiles: 22
+    - path: packages/data/src/beta_data/contracts.py
+      hash: md5
+      md5: 1d19a4b3b4025c780d81529f69eaabb5
+      size: 6401
+    - path: packages/data/src/beta_data/jobs/silver_to_gold.py
+      hash: md5
+      md5: cbdb37bf64366b0527a6a7842b8fbafa
+      size: 7115
+    outs:
+    - path: data/gold
+      hash: md5
+      md5: efa519f09de98c381ecf858c1720ac68.dir
+      size: 232926
+      nfiles: 4

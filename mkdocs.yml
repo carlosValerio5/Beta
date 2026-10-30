@@ -49,6 +49,8 @@ nav:
       - Motion director: agents/motion-director.md
       - Hold classifier: agents/hold-classifier.md
   - ADRs: adr/README.md
+  - Releases:
+      - 0.1.0 TDD evidence: releases/0.1.0/v0-scaffold.tdd.md
   - Guides:
       - Dev setup: guides/dev-setup.md
       - Runbook: guides/runbook.md
