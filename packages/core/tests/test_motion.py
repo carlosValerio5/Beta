@@ -194,3 +194,13 @@ def test_camera_zoom_bounds(zoom: float) -> None:
 
 def test_image_ref_is_plain() -> None:
     assert ImageRef(uri="x.jpg", width=10, height=20).height == 20
+
+
+def test_default_hips_use_natural_placement(
+    plan: BetaPlan, problem: Problem, body_cm: BodyModel, px_per_cm: float
+) -> None:
+    from beta_core.kinematics import contact_points, natural_hip
+
+    spec = assemble(plan, problem, body_cm, px_per_cm)
+    first = spec.keyframes[0]
+    assert first.hip == natural_hip(contact_points(problem, first.contacts), spec.body)

@@ -102,3 +102,26 @@ def test_fixtures_are_deterministic() -> None:
         first["two_bone"][0]
     )
     assert len(first["limb_roots"]) >= 2
+
+
+def test_natural_hip_hangs_off_straighter_arms(body_px: BodyModel) -> None:
+    from beta_core.kinematics import natural_hip
+
+    points = {
+        Limb.LH: P(450, 1050),
+        Limb.RH: P(560, 1050),
+        Limb.LF: P(430, 1350),
+        Limb.RF: P(580, 1350),
+    }
+    compact, _ = best_hip(points, body_px)
+    natural = natural_hip(points, body_px)
+    assert max_reach_ratio(natural, points, body_px) <= 1.0
+    assert natural.y > compact.y  # hips sit lower, arms extend
+    assert natural == natural_hip(points, body_px)
+
+
+def test_natural_hip_falls_back_when_nothing_is_comfortable(body_px: BodyModel) -> None:
+    from beta_core.kinematics import natural_hip
+
+    points = {Limb.LH: P(500, 0), Limb.LF: P(500, 3000)}
+    assert natural_hip(points, body_px) == best_hip(points, body_px)[0]
