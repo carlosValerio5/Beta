@@ -62,12 +62,14 @@ def env() -> dict:  # type: ignore[type-arg]
 
 
 def request(env: dict) -> VideoRecord:  # type: ignore[type-arg]
-    return RequestVideo(betas=env["betas"], videos=env["videos"], ids=env["ids"], clock=env["clock"]).execute(
-        env["beta"].id
-    )
+    return RequestVideo(
+        betas=env["betas"], videos=env["videos"], ids=env["ids"], clock=env["clock"]
+    ).execute(env["beta"].id)
 
 
-def produce(env: dict, director: object, renderer: object | None, record: VideoRecord) -> VideoRecord:  # type: ignore[type-arg]
+def produce(
+    env: dict, director: object, renderer: object | None, record: VideoRecord
+) -> VideoRecord:  # type: ignore[type-arg]
     return ProduceVideo(
         videos=env["videos"],
         betas=env["betas"],
@@ -117,7 +119,9 @@ def test_produce_fails_on_invalid_spec(env: dict) -> None:  # type: ignore[type-
 
 def test_produce_renderer_error(env: dict) -> None:  # type: ignore[type-arg]
     record = request(env)
-    done = produce(env, DraftMotionDirector(MotionDraft(directions=[])), ExplodingRenderer(), record)
+    done = produce(
+        env, DraftMotionDirector(MotionDraft(directions=[])), ExplodingRenderer(), record
+    )
     assert done.status is VideoStatus.FAILED
     assert done.spec is not None
     assert "renderer down" in (done.error or "")

@@ -4,7 +4,7 @@ from beta_core.domain.beta import BetaPlan, Contacts, Limb, Move
 from beta_core.domain.climber import BodyModel
 from beta_core.domain.geometry import BBox
 from beta_core.domain.holds import Hold, Problem
-from beta_core.validation import BetaValidator, Severity, ViolationCode, is_valid
+from beta_core.validation import BetaValidator, Severity, Violation, ViolationCode, is_valid
 
 
 def codes(violations: list) -> set[ViolationCode]:  # type: ignore[type-arg]
@@ -23,7 +23,9 @@ def test_ladder_plan_is_valid_with_reach(
 
 
 def test_empty_beta(plan: BetaPlan, problem: Problem) -> None:
-    assert ViolationCode.EMPTY_BETA in codes(BetaValidator().validate(with_moves(plan, []), problem))
+    assert ViolationCode.EMPTY_BETA in codes(
+        BetaValidator().validate(with_moves(plan, []), problem)
+    )
 
 
 def test_move_index_sequence(plan: BetaPlan, problem: Problem) -> None:
@@ -95,8 +97,6 @@ def test_crux_index_out_of_range(plan: BetaPlan, problem: Problem) -> None:
 
 
 def test_is_valid_ignores_warnings(plan: BetaPlan, problem: Problem) -> None:
-    from beta_core.validation import Violation
-
     warning = Violation(code=ViolationCode.NO_OP_MOVE, message="w", severity=Severity.WARNING)
     assert is_valid([warning])
     assert not is_valid([warning.model_copy(update={"severity": Severity.ERROR})])
@@ -110,7 +110,9 @@ def test_start_contacts_accept_single_start_hold_for_both_hands(
     both_on_one = plan.start.with_contact(Limb.LH, start_hold).with_contact(Limb.RH, start_hold)
     del hand
     bad = plan.model_copy(update={"start": both_on_one})
-    assert ViolationCode.START_NOT_ON_START_HOLDS not in codes(BetaValidator().validate(bad, problem))
+    assert ViolationCode.START_NOT_ON_START_HOLDS not in codes(
+        BetaValidator().validate(bad, problem)
+    )
 
 
 def test_contacts_type_alias() -> None:

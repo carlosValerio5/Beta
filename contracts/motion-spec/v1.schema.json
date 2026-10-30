@@ -1,0 +1,719 @@
+{
+  "$defs": {
+    "BodyModel": {
+      "additionalProperties": false,
+      "description": "Segment lengths of a 2D climber. ``unit`` is ``cm`` from a profile, ``px`` once scaled.",
+      "properties": {
+        "forearm": {
+          "exclusiveMinimum": 0,
+          "title": "Forearm",
+          "type": "number"
+        },
+        "head_radius": {
+          "exclusiveMinimum": 0,
+          "title": "Head Radius",
+          "type": "number"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "number"
+        },
+        "hip_width": {
+          "exclusiveMinimum": 0,
+          "title": "Hip Width",
+          "type": "number"
+        },
+        "shin": {
+          "exclusiveMinimum": 0,
+          "title": "Shin",
+          "type": "number"
+        },
+        "shoulder_width": {
+          "exclusiveMinimum": 0,
+          "title": "Shoulder Width",
+          "type": "number"
+        },
+        "thigh": {
+          "exclusiveMinimum": 0,
+          "title": "Thigh",
+          "type": "number"
+        },
+        "torso": {
+          "exclusiveMinimum": 0,
+          "title": "Torso",
+          "type": "number"
+        },
+        "unit": {
+          "default": "cm",
+          "enum": [
+            "cm",
+            "px"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "upper_arm": {
+          "exclusiveMinimum": 0,
+          "title": "Upper Arm",
+          "type": "number"
+        }
+      },
+      "required": [
+        "height",
+        "shoulder_width",
+        "hip_width",
+        "torso",
+        "upper_arm",
+        "forearm",
+        "thigh",
+        "shin",
+        "head_radius"
+      ],
+      "title": "BodyModel",
+      "type": "object"
+    },
+    "Callout": {
+      "additionalProperties": false,
+      "properties": {
+        "hold_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hold Id"
+        },
+        "kind": {
+          "const": "callout",
+          "default": "callout",
+          "title": "Kind",
+          "type": "string"
+        },
+        "technique": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Technique"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "text": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Callout",
+      "type": "object"
+    },
+    "Camera": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "$ref": "#/$defs/Point"
+        },
+        "zoom": {
+          "default": 1.0,
+          "maximum": 4.0,
+          "minimum": 1.0,
+          "title": "Zoom",
+          "type": "number"
+        }
+      },
+      "required": [
+        "center"
+      ],
+      "title": "Camera",
+      "type": "object"
+    },
+    "Caption": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "caption",
+          "default": "caption",
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Caption",
+      "type": "object"
+    },
+    "Chapter": {
+      "additionalProperties": false,
+      "properties": {
+        "move_index": {
+          "minimum": 0,
+          "title": "Move Index",
+          "type": "integer"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "title": {
+          "maxLength": 48,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "move_index",
+        "start_frame",
+        "title"
+      ],
+      "title": "Chapter",
+      "type": "object"
+    },
+    "Contacts": {
+      "additionalProperties": false,
+      "description": "Which hold each limb is on. ``None`` means the limb is free (smearing, flagging, cutting).",
+      "properties": {
+        "lf": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lf"
+        },
+        "lh": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lh"
+        },
+        "rf": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rf"
+        },
+        "rh": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rh"
+        }
+      },
+      "title": "Contacts",
+      "type": "object"
+    },
+    "Easing": {
+      "enum": [
+        "linear",
+        "ease_in_out",
+        "ease_out",
+        "snap"
+      ],
+      "title": "Easing",
+      "type": "string"
+    },
+    "HoldHighlight": {
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Color"
+        },
+        "hold_id": {
+          "title": "Hold Id",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "highlight",
+          "default": "highlight",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hold_id"
+      ],
+      "title": "HoldHighlight",
+      "type": "object"
+    },
+    "ImageRef": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "uri",
+        "width",
+        "height"
+      ],
+      "title": "ImageRef",
+      "type": "object"
+    },
+    "Keyframe": {
+      "additionalProperties": false,
+      "description": "The pose reached at the end of this segment. ``move_index == -1`` is the start position.",
+      "properties": {
+        "annotations": {
+          "default": [],
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "arrow": "#/$defs/MoveArrow",
+                "callout": "#/$defs/Callout",
+                "caption": "#/$defs/Caption",
+                "highlight": "#/$defs/HoldHighlight",
+                "trail": "#/$defs/Trail"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/HoldHighlight"
+              },
+              {
+                "$ref": "#/$defs/MoveArrow"
+              },
+              {
+                "$ref": "#/$defs/Caption"
+              },
+              {
+                "$ref": "#/$defs/Callout"
+              },
+              {
+                "$ref": "#/$defs/Trail"
+              }
+            ]
+          },
+          "title": "Annotations",
+          "type": "array"
+        },
+        "camera": {
+          "$ref": "#/$defs/Camera"
+        },
+        "contacts": {
+          "$ref": "#/$defs/Contacts"
+        },
+        "duration_frames": {
+          "minimum": 1,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "easing": {
+          "$ref": "#/$defs/Easing",
+          "default": "ease_in_out"
+        },
+        "hip": {
+          "$ref": "#/$defs/Point"
+        },
+        "limb": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Limb"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "move_index": {
+          "minimum": -1,
+          "title": "Move Index",
+          "type": "integer"
+        },
+        "slow_motion": {
+          "default": false,
+          "title": "Slow Motion",
+          "type": "boolean"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "technique": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Technique"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "move_index",
+        "start_frame",
+        "duration_frames",
+        "contacts",
+        "hip",
+        "camera"
+      ],
+      "title": "Keyframe",
+      "type": "object"
+    },
+    "Limb": {
+      "enum": [
+        "lh",
+        "rh",
+        "lf",
+        "rf"
+      ],
+      "title": "Limb",
+      "type": "string"
+    },
+    "MotionMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_frames": {
+          "minimum": 1,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "fps": {
+          "default": 30,
+          "maximum": 60,
+          "minimum": 12,
+          "title": "Fps",
+          "type": "integer"
+        },
+        "height": {
+          "default": 1920,
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "default": 1080,
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "duration_frames"
+      ],
+      "title": "MotionMeta",
+      "type": "object"
+    },
+    "MoveArrow": {
+      "additionalProperties": false,
+      "properties": {
+        "from_hold_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From Hold Id"
+        },
+        "kind": {
+          "const": "arrow",
+          "default": "arrow",
+          "title": "Kind",
+          "type": "string"
+        },
+        "limb": {
+          "$ref": "#/$defs/Limb"
+        },
+        "to_hold_id": {
+          "title": "To Hold Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limb",
+        "to_hold_id"
+      ],
+      "title": "MoveArrow",
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Point",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "description": "Who produced an artifact: planner/director name@version, prompt version, model, detector.",
+      "properties": {
+        "detector": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detector"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "planner": {
+          "title": "Planner",
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt"
+        }
+      },
+      "required": [
+        "planner"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "SpecHold": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "$ref": "#/$defs/Point"
+        },
+        "color": {
+          "title": "Color",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "radius": {
+          "exclusiveMinimum": 0,
+          "title": "Radius",
+          "type": "number"
+        },
+        "role": {
+          "enum": [
+            "start",
+            "top",
+            "route"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "center",
+        "radius",
+        "color",
+        "role"
+      ],
+      "title": "SpecHold",
+      "type": "object"
+    },
+    "Technique": {
+      "enum": [
+        "reach",
+        "cross",
+        "match",
+        "gaston",
+        "undercling",
+        "sidepull",
+        "lock_off",
+        "deadpoint",
+        "dyno",
+        "mantle",
+        "flag",
+        "drop_knee",
+        "heel_hook",
+        "toe_hook",
+        "high_step",
+        "smear",
+        "rockover",
+        "bump",
+        "step"
+      ],
+      "title": "Technique",
+      "type": "string"
+    },
+    "Trail": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "trail",
+          "default": "trail",
+          "title": "Kind",
+          "type": "string"
+        },
+        "limb": {
+          "$ref": "#/$defs/Limb"
+        }
+      },
+      "required": [
+        "limb"
+      ],
+      "title": "Trail",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "beta_id": {
+      "title": "Beta Id",
+      "type": "string"
+    },
+    "body": {
+      "$ref": "#/$defs/BodyModel"
+    },
+    "chapters": {
+      "items": {
+        "$ref": "#/$defs/Chapter"
+      },
+      "title": "Chapters",
+      "type": "array"
+    },
+    "holds": {
+      "items": {
+        "$ref": "#/$defs/SpecHold"
+      },
+      "title": "Holds",
+      "type": "array"
+    },
+    "image": {
+      "$ref": "#/$defs/ImageRef"
+    },
+    "keyframes": {
+      "items": {
+        "$ref": "#/$defs/Keyframe"
+      },
+      "minItems": 1,
+      "title": "Keyframes",
+      "type": "array"
+    },
+    "meta": {
+      "$ref": "#/$defs/MotionMeta"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "px_per_cm": {
+      "exclusiveMinimum": 0,
+      "title": "Px Per Cm",
+      "type": "number"
+    },
+    "version": {
+      "const": "1",
+      "default": "1",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "beta_id",
+    "meta",
+    "image",
+    "px_per_cm",
+    "body",
+    "holds",
+    "keyframes",
+    "chapters",
+    "provenance"
+  ],
+  "title": "MotionSpec",
+  "type": "object"
+}

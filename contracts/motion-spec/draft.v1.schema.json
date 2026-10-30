@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "Camera": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "$ref": "#/$defs/Point"
+        },
+        "zoom": {
+          "default": 1.0,
+          "maximum": 4.0,
+          "minimum": 1.0,
+          "title": "Zoom",
+          "type": "number"
+        }
+      },
+      "required": [
+        "center"
+      ],
+      "title": "Camera",
+      "type": "object"
+    },
+    "Easing": {
+      "enum": [
+        "linear",
+        "ease_in_out",
+        "ease_out",
+        "snap"
+      ],
+      "title": "Easing",
+      "type": "string"
+    },
+    "MoveDirection": {
+      "description": "Director's choices for one segment. ``move_index == -1`` directs the opening start pose.",
+      "properties": {
+        "callout": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Short label near the hold, <= 40 chars.",
+          "title": "Callout"
+        },
+        "camera": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Camera"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Framing; omit to auto-frame the active limbs."
+        },
+        "caption": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "On-screen caption, <= 60 chars.",
+          "title": "Caption"
+        },
+        "duration_s": {
+          "default": 1.2,
+          "description": "Seconds this move takes on screen (0.3-6.0).",
+          "title": "Duration S",
+          "type": "number"
+        },
+        "easing": {
+          "$ref": "#/$defs/Easing",
+          "default": "ease_in_out"
+        },
+        "hip": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Hip position in image pixels; omit to auto-place."
+        },
+        "move_index": {
+          "minimum": -1,
+          "title": "Move Index",
+          "type": "integer"
+        },
+        "show_trail": {
+          "default": false,
+          "title": "Show Trail",
+          "type": "boolean"
+        },
+        "slow_motion": {
+          "default": false,
+          "title": "Slow Motion",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "move_index"
+      ],
+      "title": "MoveDirection",
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Point",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "directions": {
+      "description": "One entry per segment you want to direct; others use defaults.",
+      "items": {
+        "$ref": "#/$defs/MoveDirection"
+      },
+      "title": "Directions",
+      "type": "array"
+    }
+  },
+  "title": "MotionDraft",
+  "type": "object"
+}

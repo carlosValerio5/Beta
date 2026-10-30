@@ -53,12 +53,13 @@ extend-exclude = ["apps/renderer", "apps/ios", "data", "var"]
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "B", "UP", "SIM", "RUF", "PT", "C4", "PL", "TID"]
 ignore = [
+  "E501",    # ruff format owns line length; long strings/URLs are fine
   "PLR0913", # use cases take their ports explicitly; long ctor arg lists are intentional
   "PLR2004", # magic numbers are fine in tests and anthropometric tables
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"**/tests/**" = ["PLR2004", "S101", "PLR0915"]
+"**/tests/**" = ["PLR2004", "S101", "PLR0915", "N802"]
 "packages/vision/**" = ["TID251"] # the one package allowed to import OpenCV
 "packages/llm/**" = ["TID251"]    # the one package allowed to import the Anthropic SDK
 

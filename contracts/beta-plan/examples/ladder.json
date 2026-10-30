@@ -1,0 +1,111 @@
+{
+  "analysis_id": "ana_ladder",
+  "confidence": 0.8,
+  "crux_move_indices": [
+    7
+  ],
+  "grade_estimate": {
+    "v": 3
+  },
+  "id": "bet_ladder",
+  "moves": [
+    {
+      "cue": "Reach up left to the jug",
+      "hold_id": 4,
+      "index": 0,
+      "limb": "lh",
+      "technique": "reach"
+    },
+    {
+      "cue": "Left foot up",
+      "hold_id": 9,
+      "index": 1,
+      "limb": "lf",
+      "technique": "step"
+    },
+    {
+      "cue": "Right foot up",
+      "hold_id": 10,
+      "index": 2,
+      "limb": "rf",
+      "technique": "step"
+    },
+    {
+      "cue": "Thumb-down gaston, push out right",
+      "hold_id": 5,
+      "index": 3,
+      "limb": "rh",
+      "technique": "gaston"
+    },
+    {
+      "cue": "High step onto the start jug",
+      "hold_id": 0,
+      "index": 4,
+      "limb": "lf",
+      "technique": "high_step"
+    },
+    {
+      "cue": "Stand up and slap the sloper",
+      "hold_id": 6,
+      "index": 5,
+      "limb": "lh",
+      "technique": "reach"
+    },
+    {
+      "cue": "Right foot to the other start jug",
+      "hold_id": 1,
+      "index": 6,
+      "limb": "rf",
+      "technique": "step"
+    },
+    {
+      "cue": "Lock off low and reach the crimp",
+      "hold_id": 7,
+      "index": 7,
+      "limb": "rh",
+      "technique": "lock_off"
+    },
+    {
+      "cue": "Rock over onto the first jug",
+      "hold_id": 4,
+      "index": 8,
+      "limb": "lf",
+      "technique": "high_step"
+    },
+    {
+      "cue": "Right foot to the gaston",
+      "hold_id": 5,
+      "index": 9,
+      "limb": "rf",
+      "technique": "step"
+    },
+    {
+      "cue": "Top out jug, left hand",
+      "hold_id": 8,
+      "index": 10,
+      "limb": "lh",
+      "technique": "reach"
+    },
+    {
+      "cue": "Match the top",
+      "hold_id": 8,
+      "index": 11,
+      "limb": "rh",
+      "technique": "match"
+    }
+  ],
+  "provenance": {
+    "detector": null,
+    "model": null,
+    "planner": "fixture@1",
+    "prompt": null
+  },
+  "start": {
+    "lf": 2,
+    "lh": 0,
+    "rf": 3,
+    "rh": 1
+  },
+  "style": "static",
+  "summary": "Climb the ladder of yellows, keeping feet high so the crimp at move 8 is a short lock-off."
+}

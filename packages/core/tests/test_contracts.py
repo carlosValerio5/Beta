@@ -28,5 +28,9 @@ def test_export_writes_schema_examples_and_fixtures(tmp_path: Path) -> None:
 def test_export_is_byte_stable(tmp_path: Path) -> None:
     export_contracts(tmp_path / "a")
     export_contracts(tmp_path / "b")
-    for name in ["motion-spec/v1.schema.json", "motion-spec/examples/ladder.json", "kinematics/fixtures.json"]:
+    for name in [
+        "motion-spec/v1.schema.json",
+        "motion-spec/examples/ladder.json",
+        "kinematics/fixtures.json",
+    ]:
         assert (tmp_path / "a" / name).read_bytes() == (tmp_path / "b" / name).read_bytes()

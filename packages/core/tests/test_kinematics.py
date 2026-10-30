@@ -66,7 +66,12 @@ def test_solve_two_bone_target_at_root_does_not_crash() -> None:
 
 
 def test_best_hip_finds_feasible_start_pose(body_px: BodyModel) -> None:
-    points = {Limb.LH: P(450, 1050), Limb.RH: P(560, 1050), Limb.LF: P(430, 1350), Limb.RF: P(580, 1350)}
+    points = {
+        Limb.LH: P(450, 1050),
+        Limb.RH: P(560, 1050),
+        Limb.LF: P(430, 1350),
+        Limb.RF: P(580, 1350),
+    }
     hip, ratio = best_hip(points, body_px)
     assert ratio <= 1.0
     assert max_reach_ratio(hip, points, body_px) == pytest.approx(ratio)
@@ -80,7 +85,12 @@ def test_best_hip_reports_infeasible(body_px: BodyModel) -> None:
 
 def test_max_reach_ratio_ignores_free_limbs(body_px: BodyModel) -> None:
     hip = P(500, 1000)
-    points: dict[Limb, Point | None] = {Limb.LH: None, Limb.RH: None, Limb.LF: P(480, 1100), Limb.RF: None}
+    points: dict[Limb, Point | None] = {
+        Limb.LH: None,
+        Limb.RH: None,
+        Limb.LF: P(480, 1100),
+        Limb.RF: None,
+    }
     assert max_reach_ratio(hip, points, body_px) < 1.0
 
 
@@ -88,5 +98,7 @@ def test_fixtures_are_deterministic() -> None:
     first = kinematics_fixtures()
     assert first == kinematics_fixtures()
     assert len(first["two_bone"]) >= 5
-    assert {"root", "target", "l1", "l2", "bend", "joint", "end", "reached"} <= set(first["two_bone"][0])
+    assert {"root", "target", "l1", "l2", "bend", "joint", "end", "reached"} <= set(
+        first["two_bone"][0]
+    )
     assert len(first["limb_roots"]) >= 2

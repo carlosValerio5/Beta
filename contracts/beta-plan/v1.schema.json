@@ -1,0 +1,276 @@
+{
+  "$defs": {
+    "ClimbingStyle": {
+      "enum": [
+        "static",
+        "dynamic",
+        "balanced"
+      ],
+      "title": "ClimbingStyle",
+      "type": "string"
+    },
+    "Contacts": {
+      "additionalProperties": false,
+      "description": "Which hold each limb is on. ``None`` means the limb is free (smearing, flagging, cutting).",
+      "properties": {
+        "lf": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lf"
+        },
+        "lh": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lh"
+        },
+        "rf": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rf"
+        },
+        "rh": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rh"
+        }
+      },
+      "title": "Contacts",
+      "type": "object"
+    },
+    "Grade": {
+      "additionalProperties": false,
+      "description": "A boulder grade. ``v == -1`` is VB.",
+      "properties": {
+        "v": {
+          "maximum": 17,
+          "minimum": -1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "v"
+      ],
+      "title": "Grade",
+      "type": "object"
+    },
+    "Limb": {
+      "enum": [
+        "lh",
+        "rh",
+        "lf",
+        "rf"
+      ],
+      "title": "Limb",
+      "type": "string"
+    },
+    "Move": {
+      "additionalProperties": false,
+      "properties": {
+        "cue": {
+          "default": "",
+          "maxLength": 160,
+          "title": "Cue",
+          "type": "string"
+        },
+        "hold_id": {
+          "minimum": 0,
+          "title": "Hold Id",
+          "type": "integer"
+        },
+        "index": {
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "limb": {
+          "$ref": "#/$defs/Limb"
+        },
+        "technique": {
+          "$ref": "#/$defs/Technique",
+          "default": "reach"
+        }
+      },
+      "required": [
+        "index",
+        "limb",
+        "hold_id"
+      ],
+      "title": "Move",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "description": "Who produced an artifact: planner/director name@version, prompt version, model, detector.",
+      "properties": {
+        "detector": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detector"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "planner": {
+          "title": "Planner",
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt"
+        }
+      },
+      "required": [
+        "planner"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Technique": {
+      "enum": [
+        "reach",
+        "cross",
+        "match",
+        "gaston",
+        "undercling",
+        "sidepull",
+        "lock_off",
+        "deadpoint",
+        "dyno",
+        "mantle",
+        "flag",
+        "drop_knee",
+        "heel_hook",
+        "toe_hook",
+        "high_step",
+        "smear",
+        "rockover",
+        "bump",
+        "step"
+      ],
+      "title": "Technique",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "analysis_id": {
+      "title": "Analysis Id",
+      "type": "string"
+    },
+    "confidence": {
+      "default": 0.5,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "crux_move_indices": {
+      "default": [],
+      "items": {
+        "type": "integer"
+      },
+      "title": "Crux Move Indices",
+      "type": "array"
+    },
+    "grade_estimate": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Grade"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "moves": {
+      "items": {
+        "$ref": "#/$defs/Move"
+      },
+      "title": "Moves",
+      "type": "array"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "start": {
+      "$ref": "#/$defs/Contacts"
+    },
+    "style": {
+      "$ref": "#/$defs/ClimbingStyle",
+      "default": "balanced"
+    },
+    "summary": {
+      "default": "",
+      "maxLength": 600,
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "analysis_id",
+    "start",
+    "moves",
+    "provenance"
+  ],
+  "title": "BetaPlan",
+  "type": "object"
+}

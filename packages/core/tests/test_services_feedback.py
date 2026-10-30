@@ -29,7 +29,9 @@ def env() -> dict:  # type: ignore[type-arg]
 
 
 def test_records_move_feedback(env: dict) -> None:  # type: ignore[type-arg]
-    fb = env["uc"].execute(env["beta"].id, FeedbackKind.MOVE_LOOKS_WRONG, move_index=2, note="Too far")
+    fb = env["uc"].execute(
+        env["beta"].id, FeedbackKind.MOVE_LOOKS_WRONG, move_index=2, note="Too far"
+    )
     assert env["feedback"].get(fb.id) == fb
     assert env["events"].names() == [EventName.FEEDBACK_RECORDED]
 
