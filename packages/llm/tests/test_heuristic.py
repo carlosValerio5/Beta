@@ -77,3 +77,29 @@ def test_start_uses_the_lowest_reachable_feet() -> None:
     lowest = max(h.center.y for h in problem.holds)
     assert feet
     assert max(feet) == lowest
+
+
+def test_feet_never_cross_on_synthetic_walls() -> None:
+    from beta_core.domain.climber import BodyModel, ClimberProfile
+    from beta_core.testing import FAKE_IMAGE
+    from beta_vision.synthetic import SyntheticWallGenerator
+
+    for seed in range(40, 48):
+        wall = SyntheticWallGenerator(seed).generate()
+        problem = wall.problem()
+        profile = ClimberProfile(height_cm=172)
+        plan = HeuristicBetaPlanner().plan(
+            BetaRequest(
+                plan_id="b",
+                analysis_id="a",
+                problem=problem,
+                image=FAKE_IMAGE,
+                profile=profile,
+                body=BodyModel.from_profile(profile),
+                px_per_cm=wall.px_per_cm,
+            )
+        )
+        for state in plan.states():
+            if state.lf is not None and state.rf is not None and state.lf != state.rf:
+                left, right = problem.hold(state.lf).center.x, problem.hold(state.rf).center.x
+                assert left <= right + 10, f"seed {seed}: feet crossed"
