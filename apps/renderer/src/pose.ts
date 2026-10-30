@@ -98,7 +98,12 @@ export function poseAt(spec: MotionSpec, frame: number): Pose {
   for (const limb of LIMBS) {
     const target = known[limb] ?? roots[limb];
     const [l1, l2] = stretchedLengths(spec, limb, roots[limb], target);
-    const sol = solveTwoBone(roots[limb], target, l1, l2, BEND[limb]);
+    // Bend toward the outside of the body whichever way the limb points (a fixed bend sign would
+    // swing knees inward when the feet are above the hips).
+    const side = limb === "lh" || limb === "lf" ? -1 : 1;
+    const a = solveTwoBone(roots[limb], target, l1, l2, BEND[limb]);
+    const b = solveTwoBone(roots[limb], target, l1, l2, -BEND[limb]);
+    const sol = side * (a.joint.x - hip.x) >= side * (b.joint.x - hip.x) ? a : b;
     // Closer than a folded limb can reach (hand at the shoulder): the IK keeps the end short of the
     // target; for drawing, fold fully and keep the hand/foot on its hold.
     const tooClose =

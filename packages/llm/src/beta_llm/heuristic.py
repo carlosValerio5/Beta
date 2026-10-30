@@ -23,6 +23,7 @@ REACH_LIMIT = 1.0  # validator allows 1.08
 STRETCH = 0.95  # above this a hand move is a deadpoint (dynamic) or lock-off (static)
 MIN_PROGRESS_PX = 20.0
 MAX_MOVES = 40
+FOOT_CROSS_PX = 10.0
 
 
 class _Climb:
@@ -117,12 +118,14 @@ class HeuristicBetaPlanner:
         lh, rh = (starts[0], starts[-1])
         hands = Contacts(lh=lh, rh=rh)
         hand_low = max(climb.y(lh), climb.y(rh))
-        candidates = climb.by_height(
-            [
+        # Lowest footholds first: climbers start stretched out, not crouched under their hands.
+        candidates = sorted(
+            (
                 h
                 for h in climb.centers
                 if h not in starts and climb.y(h) > hand_low + climb.body.torso * 0.5
-            ]
+            ),
+            key=lambda h: (-climb.y(h), climb.x(h)),
         )[:8]
         best = hands
         for i, a in enumerate(candidates):
@@ -178,12 +181,21 @@ class HeuristicBetaPlanner:
                     if climb.y(h) < climb.y(current) - MIN_PROGRESS_PX
                     and climb.y(h) > floor
                     and h not in (contacts.lh, contacts.rh, other_foot)
+                    and not self._crosses(climb, foot, h, other_foot)
                 ]
             )
             for hold in candidates:
                 if climb.ratio(contacts.with_contact(foot, hold)) <= REACH_LIMIT:
                     return foot, hold
         return None
+
+    @staticmethod
+    def _crosses(climb: _Climb, foot: Limb, hold: int, other_foot: int | None) -> bool:
+        """Feet keep their sides: the left foot never lands right of the right foot."""
+        if other_foot is None:
+            return False
+        gap = climb.x(hold) - climb.x(other_foot)
+        return gap > FOOT_CROSS_PX if foot is Limb.LF else gap < -FOOT_CROSS_PX
 
     @staticmethod
     def _technique(
